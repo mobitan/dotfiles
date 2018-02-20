@@ -1,0 +1,47 @@
+---
+version: 2
+clusters:
+  nlp:
+    broadcast: true
+    hosts:
+      - nlp-iax-00
+      - nlp-iax-01
+      - nlp-iax-02
+      - nlp-iax-03
+      - nlp-iax-04
+      - nlp-iax-05
+      - nlp-gpu-01
+      - nlp-gpu-02
+  mcc:
+    broadcast: true
+    sleep: 5
+    hosts:
+      - mccnlp201
+      - mccnlp202
+      - mccnlp001
+      - mccnlp002
+      - mccnlp003
+      - mccnlp004
+      - mccnlp005
+      - mccnlp006
+      - mccnlp007
+      - mccnlp008
+      - mccnlp009
+      - mccnlp010
+      - mccnlp011
+      - mccnlp012
+      - mccnlp013
+      - mccnlp014
+      - mccnlp015
+      - mccnlp016
+      - mccnlp017
+      - mccnlp018
+      - mccnlp019
+      - mccnlp020
+      - mccnlp021
+      - mccnlp022
+      - mccnlp023
+      - mccnlp024
+      - mccnlp025
+      - mccnlp026
+      - mccnlp027
