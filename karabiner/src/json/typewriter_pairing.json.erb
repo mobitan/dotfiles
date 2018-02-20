@@ -1,0 +1,79 @@
+<%# ---------------------------------------------------------------------%>
+<%# Typewriter pairing %>
+<%# ---------------------------------------------------------------------%>
+
+{
+    "title": "common",
+    "rules": [
+        {
+            "description": "Typewriter pairing: ANSI-like symbol mappings on JIS keyboard",
+            "manipulators": [
+                {
+                    "type": "basic",
+                    "from": <%= from("2", ["shift"], ["caps_lock"]) %>,
+                    "to": <%= to([["open_bracket"]]) %>
+                },
+                {
+                    "type": "basic",
+                    "from": <%= from("6", ["shift"], ["caps_lock"]) %>,
+                    "to": <%= to([["equal_sign"]]) %>
+                },
+                {
+                    "type": "basic",
+                    "from": <%= from("7", ["shift"], ["caps_lock"]) %>,
+                    "to": <%= to([["6", ["left_shift"]]]) %>
+                },
+                {
+                    "type": "basic",
+                    "from": <%= from("8", ["shift"], ["caps_lock"]) %>,
+                    "to": <%= to([["quote", ["left_shift"]]]) %>
+                },
+                {
+                    "type": "basic",
+                    "from": <%= from("9", ["shift"], ["caps_lock"]) %>,
+                    "to": <%= to([["8", ["left_shift"]]]) %>
+                },
+                {
+                    "type": "basic",
+                    "from": <%= from("0", ["shift"], ["caps_lock"]) %>,
+                    "to": <%= to([["9", ["left_shift"]]]) %>
+                },
+                {
+                    "type": "basic",
+                    "from": <%= from("hyphen", ["shift"], ["caps_lock"]) %>,
+                    "to": <%= to([["international1", ["left_shift"]]]) %>
+                },
+                {
+                    "type": "basic",
+                    "from": <%= from("equal_sign", [], ["caps_lock"]) %>,
+                    "to": <%= to([["open_bracket", ["left_shift"]]]) %>
+                },
+                {
+                    "type": "basic",
+                    "from": <%= from("open_bracket", ["shift"], ["caps_lock"]) %>,
+                    "to": <%= to([["semicolon", ["left_shift"]]]) %>
+                },
+                {
+                    "type": "basic",
+                    "from": <%= from("open_bracket", [], ["caps_lock"]) %>,
+                    "to": <%= to([["hyphen", ["left_shift"]]]) %>
+                },
+                {
+                    "type": "basic",
+                    "from": <%= from("semicolon", ["shift"], ["caps_lock"]) %>,
+                    "to": <%= to([["quote"]]) %>
+                },
+                {
+                    "type": "basic",
+                    "from": <%= from("quote", ["shift"], ["caps_lock"]) %>,
+                    "to": <%= to([["2", ["left_shift"]]]) %>
+                },
+                {
+                    "type": "basic",
+                    "from": <%= from("quote", [], ["caps_lock"]) %>,
+                    "to": <%= to([["7", ["left_shift"]]]) %>
+                }
+            ]
+        }
+    ]
+}
