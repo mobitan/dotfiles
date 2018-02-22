@@ -9,6 +9,8 @@
 # 2017/11/30	Added ~/.gem/ruby/2.0.0/bin to PATH
 # 2017/12/20	Added ~/tools to PATH
 # 2017/12/22	Moved 'pyenv is disabled' message to the last
+# 2018/02/21	Added ~/.gem/ruby/2.*/bin to PATH
+# 2018/02/22	Added LSCOLORS for Mac
 
 enable_pyenv=true
 
@@ -26,8 +28,8 @@ function pathmunge () {
 }
 
 # RubyGems
-if [[ -d $HOME/.gem/ruby/2.0.0/bin ]]; then
-	pathmunge $HOME/.gem/ruby/2.0.0/bin
+if [[ -d $HOME/.gem/ruby ]]; then
+	pathmunge $HOME/.gem/ruby/2.*/bin
 fi
 
 # java
@@ -160,13 +162,11 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
+# enable color support of ls
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls -vhF --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+elif [ "$(uname)" = "Darwin" ]; then
+    export LSCOLORS='dxgxfxexcxegedabagacad'
 fi
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -193,6 +193,3 @@ fi
 if [[ ! $PATH =~ "/.pyenv/shims:" ]]; then
 	echo "pyenv is disabled"
 fi
-
-# byobu
-# echo -e "\033k`hostname -s`\033\\" # When we get tmux 1.9, use automatic-rename-format

@@ -1,0 +1,38 @@
+#
+#   	Ikki's .bash_aliases for Mac
+#
+# 2015/05/16	Moved from .bashrc
+# 2018/02/22	for Mac
+
+alias ls='ls -G'
+alias lr='ls -GR'
+alias l='ls -Gl'
+alias ll='ls -Gl'
+alias lh='ls -Glh'
+alias la='ls -GlA'
+alias lah='ls -GlAh'
+alias lt='ls -Gltr'
+alias lth='ls -Gltrh'
+alias df='df -h'
+alias du='du -sh'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+function browse() {
+	if [ "$1" = "" ]; then
+		ls
+	elif [ "$1" = "-" ]; then
+		cd -
+		ls
+	elif [ -d "$1" ]; then
+		cd "$1"
+		ls
+	else
+		less "$1"
+	fi
+}
+alias d='browse'
+
+alias s='ssh'
+alias c='i2cssh -F --profile IKKI'

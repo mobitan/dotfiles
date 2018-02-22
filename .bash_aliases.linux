@@ -1,0 +1,37 @@
+#
+#   	Ikki's .bash_aliases for Linux
+#
+# 2015/05/16	Moved from .bashrc
+# 2018/02/22	for Linux
+
+alias ls='ls --color=auto -v
+alias lr='ls --color=auto -vR'
+alias l='ls --color=auto -vl'
+alias ll='ls --color=auto -vl'
+alias lh='ls --color=auto -vlh'
+alias la='ls --color=auto -vlA'
+alias lah='ls --color=auto -vlAh'
+alias lt='ls --color=auto -vltr'
+alias lth='ls --color=auto -vltrh'
+alias df='df -h'
+alias du='du -sh'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+function browse() {
+	if [ "$1" = "" ]; then
+		ls
+	elif [ "$1" = "-" ]; then
+		cd -
+		ls
+	elif [ -d "$1" ]; then
+		cd "$1"
+		ls
+	else
+		less "$1"
+	fi
+}
+alias d='browse'
+
+alias s='ssh'
