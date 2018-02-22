@@ -4,7 +4,7 @@
 # 2015/05/16	Moved from .bashrc
 # 2018/02/22	for Linux
 
-alias ls='ls --color=auto -v
+alias ls='ls --color=auto -v'
 alias lr='ls --color=auto -vR'
 alias l='ls --color=auto -vl'
 alias ll='ls --color=auto -vl'
