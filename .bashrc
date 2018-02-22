@@ -166,7 +166,7 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 elif [ "$(uname)" = "Darwin" ]; then
-    export LSCOLORS='dxgxfxexcxegedabagacad'
+    export LSCOLORS='DxGxGeDeCxegedabagacad'
 fi
 
 # Add an "alert" alias for long running commands.  Use like so:
