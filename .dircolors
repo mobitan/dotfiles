@@ -39,13 +39,13 @@ TERM vt100
 # 40=black 41=red 42=green 43=yellow 44=blue 45=magenta 46=cyan 47=white
 NORMAL 00   # global default, although everything should be something.
 FILE 01     # normal file
-DIR 33   # directory
-LINK 36  # symbolic link.  (If you set this to 'target' instead of a
+DIR 01;33   # directory
+LINK 01;36  # symbolic link.  (If you set this to 'target' instead of a
             # numerical value, the color is as for the file pointed to.)
-FIFO 30;46  # pipe
-SOCK 30;43  # socket
-BLK 34;46    # block device driver
-CHR 34;43    # character device driver
+FIFO 01;36;44  # pipe
+SOCK 01;33;44  # socket
+BLK 01;34;46    # block device driver
+CHR 01;34;43    # character device driver
 ORPHAN 01;31 # symlink to nonexistent file
 
 # This is for files with execute permission:
