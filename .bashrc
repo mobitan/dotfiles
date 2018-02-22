@@ -12,7 +12,11 @@
 # 2018/02/21	Added ~/.gem/ruby/2.*/bin to PATH
 # 2018/02/22	Added LSCOLORS for Mac
 
-enable_pyenv=true
+if [[ -f "$HOME/pyenv=on" ]]; then
+	enable_pyenv=true
+else
+	enable_pyenv=false
+fi
 
 function pathmunge () {
 	case ":${PATH}:" in
