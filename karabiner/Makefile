@@ -1,6 +1,5 @@
 all:
 	scripts/update-json.sh
-	cp docs/json/*.json ../.config/karabiner/assets/complex_modifications/
 
 rebuild:
 	touch src/json/*
