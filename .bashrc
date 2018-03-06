@@ -11,6 +11,7 @@
 # 2017/12/22	Moved 'pyenv is disabled' message to the last
 # 2018/02/21	Added ~/.gem/ruby/2.*/bin to PATH
 # 2018/02/22	Added LSCOLORS for Mac
+# 2018/02/28	Changed key binding of Ctrl+W
 
 if [[ -f "$HOME/pyenv=on" ]]; then
 	enable_pyenv=true
@@ -137,6 +138,10 @@ shopt -s dotglob
 # performing pathname expansion.
 shopt -s nocaseglob
 
+# Make Ctrl+W stop at each symbol
+stty werase undef
+bind '"\C-w": backward-kill-word'
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -158,13 +163,13 @@ else
 fi
 
 # If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-	;;
-*)
-    ;;
-esac
+#case "$TERM" in
+#xterm*|rxvt*)
+#	PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+#	;;
+#*)
+#    ;;
+#esac
 
 # enable color support of ls
 if [ -x /usr/bin/dircolors ]; then
