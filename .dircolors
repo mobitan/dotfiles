@@ -27,6 +27,7 @@ TERM xterm-debian
 TERM rxvt
 TERM screen
 TERM screen-w
+TERM screen-256color
 TERM vt100
 
 # Below are the color init strings for the basic file types. A color init
