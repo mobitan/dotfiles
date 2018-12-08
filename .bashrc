@@ -12,6 +12,7 @@
 # 2018/02/21	Added ~/.gem/ruby/2.*/bin to PATH
 # 2018/02/22	Added LSCOLORS for Mac
 # 2018/02/28	Changed key binding of Ctrl+W
+# 2018/08/19   Added BYOBU_PREFIX
 
 function pathmunge () {
 	case ":${PATH}:" in
@@ -76,6 +77,11 @@ fi
 # parallel
 if [[ -r $HOME/local/bin/env_parallel.bash ]]; then
 	source $HOME/local/bin/env_parallel.bash
+fi
+
+# byobu
+if [[ -x /usr/local/bin/byobu ]]; then
+	export BYOBU_PREFIX=/usr/local
 fi
 
 #===============================================================================
