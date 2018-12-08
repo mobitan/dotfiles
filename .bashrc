@@ -13,12 +13,6 @@
 # 2018/02/22	Added LSCOLORS for Mac
 # 2018/02/28	Changed key binding of Ctrl+W
 
-if [[ -f "$HOME/pyenv=on" ]]; then
-	enable_pyenv=true
-else
-	enable_pyenv=false
-fi
-
 function pathmunge () {
 	case ":${PATH}:" in
 	*:"$1":*) ;;
@@ -31,59 +25,6 @@ function pathmunge () {
 	esac
 	export PATH
 }
-
-# RubyGems
-if [[ -d $HOME/.gem/ruby ]]; then
-	pathmunge $HOME/.gem/ruby/2.*/bin
-fi
-
-# java
-if [[ -d /opt/JDK ]]; then
-	# point to the newest version
-	export JAVA_HOME=`ls -drv /opt/JDK/* | head -n1`
-	pathmunge $JAVA_HOME/bin
-	pathmunge $HOME/local/maven/bin
-fi
-
-# cuda
-if [[ -d /usr/local/cuda ]]; then
-	export CUDA_ROOT=/usr/local/cuda
-	export CUDA_PATH=$CUDA_ROOT
-	export CPATH=$CUDA_ROOT/include${CPATH:+:${CPATH}}
-	export C_INCLUDE_PATH=$CUDA_ROOT/include${C_INCLUDE_PATH:+:${C_INCLUDE_PATH}}
-	export CPLUS_INCLUDE_PATH=$CUDA_ROOT/include${CPLUS_INCLUDE_PATH:+:${CPLUS_INCLUDE_PATH}}
-	export LIBRARY_PATH=$CUDA_ROOT/lib64${LIBRARY_PATH:+:${LIBRARY_PATH}}
-	export LD_LIBRARY_PATH=$CUDA_ROOT/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-	export DYLD_LIBRARY_PATH=$CUDA_ROOT/lib64${DYLD_LIBRARY_PATH:+:${DYLD_LIBRARY_PATH}}
-	export LD_RUN_PATH=$CUDA_ROOT/lib64${LD_RUN_PATH:+:${LD_RUN_PATH}}
-	pathmunge $CUDA_ROOT/bin
-fi
-
-# parallel
-if [[ -r $HOME/local/bin/env_parallel.bash ]]; then
-	source $HOME/local/bin/env_parallel.bash
-fi
-
-# pyenv
-if [[ $enable_pyenv == true && -d $HOME/.pyenv ]]; then
-	pathmunge $HOME/.pyenv/bin
-	eval "$(pyenv init -)"
-	eval "$(pyenv virtualenv-init -)"
-	export PYENV_VIRTUALENV_DISABLE_PROMPT=1
-fi
-
-# torch
-case `hostname -s` in
-nlp-iax-*) TORCH_ROOT=$HOME/local/torch.nlp-iax ;;
-mccnlp*)   TORCH_ROOT=$HOME/local/torch.mccnlp ;;
-*)         TORCH_ROOT=$HOME/local/torch.`hostname -s` ;;
-esac
-if [[ -r $TORCH_ROOT/install/bin/torch-activate ]]; then
-	case ":${PATH}:" in
-	*:"$TORCH_ROOT/install/bin":*) ;;
-	*) source $TORCH_ROOT/install/bin/torch-activate ;;
-	esac
-fi
 
 # local
 if [[ -d $HOME/local ]]; then
@@ -99,6 +40,47 @@ if [[ -d $HOME/local ]]; then
 fi
 pathmunge $HOME/bin
 pathmunge $HOME/tools
+
+# cuda
+if [[ -d /usr/local/cuda ]]; then
+	export CUDA_ROOT=/usr/local/cuda
+	export CUDA_PATH=$CUDA_ROOT
+	export CPATH=$CUDA_ROOT/include${CPATH:+:${CPATH}}
+	export C_INCLUDE_PATH=$CUDA_ROOT/include${C_INCLUDE_PATH:+:${C_INCLUDE_PATH}}
+	export CPLUS_INCLUDE_PATH=$CUDA_ROOT/include${CPLUS_INCLUDE_PATH:+:${CPLUS_INCLUDE_PATH}}
+	export LIBRARY_PATH=$CUDA_ROOT/lib64${LIBRARY_PATH:+:${LIBRARY_PATH}}
+	export LD_LIBRARY_PATH=$CUDA_ROOT/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+	export DYLD_LIBRARY_PATH=$CUDA_ROOT/lib64${DYLD_LIBRARY_PATH:+:${DYLD_LIBRARY_PATH}}
+	export LD_RUN_PATH=$CUDA_ROOT/lib64${LD_RUN_PATH:+:${LD_RUN_PATH}}
+	pathmunge $CUDA_ROOT/bin
+fi
+
+# pyenv
+if [[ -f "$HOME/pyenv=on" ]]; then
+	enable_pyenv=true
+else
+	enable_pyenv=false
+fi
+if [[ $enable_pyenv == true && -d $HOME/.pyenv ]]; then
+	pathmunge $HOME/.pyenv/bin
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
+	export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+fi
+
+# RubyGems
+if [[ -d $HOME/.gem/ruby ]]; then
+	pathmunge $HOME/.gem/ruby/2.*/bin
+fi
+
+# parallel
+if [[ -r $HOME/local/bin/env_parallel.bash ]]; then
+	source $HOME/local/bin/env_parallel.bash
+fi
+
+#===============================================================================
+#   Interactive shell
+#===============================================================================
 
 # If not running interactively, don't do anything
 case $- in
@@ -198,7 +180,7 @@ if [ -f ~/.bash_aliases ]; then
 	. ~/.bash_aliases
 fi
 
-# pyenv
-if [[ ! $PATH =~ "/.pyenv/shims:" ]]; then
-	echo "pyenv is disabled"
+# Notify pyenv
+if [[ $PATH =~ "/.pyenv/shims:" ]]; then
+	echo "pyenv is enabled"
 fi
