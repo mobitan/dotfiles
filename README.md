@@ -1,6 +1,6 @@
 =dotfiles
 
-==�u���ꏊ
+==置き場所
 
 Linux: ~/dotfiles
 
